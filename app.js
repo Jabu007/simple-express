@@ -11,14 +11,32 @@ app.post('/', (req, res) => {
   res.send("Jabu's simple express app lol")
 })
 
-app.get('/success', (req, res) => {
+app.get('/inovio-postback', async (req, res) => {
   console.log("Req.query: ", req.query) // Log the body of the request
-  res.send("Payment success")
-})
+  const query = req.query;
+  const status = query.TRANS_STATUS_NAME;
+  const userID = query.XTL_UDF01;
+  const coins = query.XTL_UDF02;
 
-app.post('/declined', (req, res) => {
-  console.log("Req.query: ", req.query) // Log the body of the request
-  res.send("Payment declined")
+  if (status === 'APPROVED') {
+    // Find the user by ID
+    const user = await User.findById(userID);  
+    //const user = await User.findOne({ _id: user_id });
+
+    console.log("User: ", user, " coins: ", coins); 
+
+    if (!user) {
+      res.status(404).send('User not found.');
+      return;
+    } 
+
+    user.athcoin_balance += Number(coins);
+    await user.save();
+  
+    res.status(200).send('Payment success');
+  } else {
+    res.status(200).send('Transaction declined');
+  }
 })
 
 app.listen(port, () => {
