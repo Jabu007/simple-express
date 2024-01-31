@@ -34,10 +34,12 @@ app.get('/inovio-postback', async (req, res) => {
 
     // user.athcoin_balance += Number(coins);
     // await user.save();
-  
-    res.status(200).send('Payment success');
+    res.redirect("http://localhost:3005/wallet?payment=success&coins=" + coins);   
+    //  res.status(200).send('Payment success');
+    // res.send({ url: url });
   } else {
-    res.status(200).send('Transaction declined');
+    res.redirect("http://localhost:3005/wallet?payment=failure&coins=" + coins);
+    //res.status(200).send('Transaction declined');
   }
 })
 
