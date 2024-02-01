@@ -38,7 +38,7 @@ app.get('/inovio-postback', async (req, res) => {
     //  res.status(200).send('Payment success');
     // res.send({ url: url });
   } else {
-    res.redirect("http://localhost:3005/wallet?payment=failure&coins=" + coins);
+    res.redirect("http://localhost:3005/auth/games-dash/fantasy/account??payment=failure&coins=" + coins);
     //res.status(200).send('Transaction declined');
   }
 })
