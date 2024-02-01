@@ -31,7 +31,7 @@ app.get('/inovio-postback', async (req, res) => {
     // } 
 
     console.log("Coins :", typeof Number(coins), " ", coins);
-    console.log("UserId :", typeof Number(userId), " ", userId);
+    console.log("UserId :", typeof userId, " ", userId);
 
     //user.athcoin_balance += Number(coins);
     //await user.save();
