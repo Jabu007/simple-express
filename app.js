@@ -15,7 +15,7 @@ app.get('/inovio-postback', async (req, res) => {
   console.log("Req.query: ", req.query) // Log the body of the request
   const query = req.query;
   const status = query.TRANS_STATUS_NAME;
-  const userID = query.xtl_udf01;
+  const userId = query.xtl_udf01;
   const coins = query.xtl_udf02;
 
   if (status === 'APPROVED') {
@@ -31,6 +31,7 @@ app.get('/inovio-postback', async (req, res) => {
     // } 
 
     console.log("Coins :", typeof Number(coins), " ", coins);
+    console.log("UserId :", typeof Number(userId), " ", userId);
 
     //user.athcoin_balance += Number(coins);
     //await user.save();
