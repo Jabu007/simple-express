@@ -33,7 +33,7 @@ app.get('/inovio-postback', async (req, res) => {
     console.log("Coins :", typeof Number(coins), " ", coins);
 
     //user.athcoin_balance += Number(coins);
-    await user.save();
+    //await user.save();
     res.redirect("http://localhost/auth/games-dash/fantasy/account?payment=success&coins=" + coins);   
     //  res.status(200).send('Payment success');
     // res.send({ url: url });
