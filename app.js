@@ -19,21 +19,20 @@ app.get('/inovio-postback', async (req, res) => {
   const coins = query.xtl_udf02;
 
   if (status === 'APPROVED') {
-    //Find the user by ID
-    const user = await User.findById(userID);  
-    //const user = await User.findOne({ _id: user_id });
+    // //Find the user by ID
+    // const user = await User.findById(userID);  
+    // //const user = await User.findOne({ _id: user_id });
 
-    console.log("User: ", user, " coins: ", coins); 
+    // console.log("User: ", user, " coins: ", coins); 
 
-    if (!user) {
-      res.status(404).send('User not found.');
-      return;
-    } 
+    // if (!user) {
+    //   res.status(404).send('User not found.');
+    //   return;
+    // } 
 
     console.log("Coins :", typeof Number(coins), " ", coins);
 
-
-    user.athcoin_balance += Number(coins);
+    //user.athcoin_balance += Number(coins);
     await user.save();
     res.redirect("http://localhost/auth/games-dash/fantasy/account?payment=success&coins=" + coins);   
     //  res.status(200).send('Payment success');
